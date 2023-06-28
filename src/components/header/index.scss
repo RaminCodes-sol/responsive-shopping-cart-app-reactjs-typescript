@@ -1,0 +1,109 @@
+
+
+@mixin FadeIn ($delay) {
+    animation: fadeIn .2s * $delay linear forwards;
+    @keyframes fadeIn {
+        0% { 
+            opacity: 0;
+            transform: rotateY(12deg);
+        }
+        100% {
+            opacity: 1;
+            transform: rotateY(0);
+        }
+    }
+}
+
+
+@mixin Media ($type, $size) {
+    @media (#{$type}: $size) {
+        @content;
+    }
+}
+
+
+.header {
+    margin-top: 2em;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .header-title {
+        display: none;
+    }
+
+    .filters-wrapper {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+
+        .category-filter, .sort-filter {
+            ul.drop-menu-container {
+                > li {
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    padding: .3rem 0;
+                    color: #fff;
+                    text-align: center;
+
+                }
+
+                > li:hover > ul.drop-menu > li {
+                    @for $i from 1 through 4 {
+                        &:nth-child(#{$i}) {
+                            @include FadeIn($i);
+                        }
+                    }
+                }
+
+                > li > ul.drop-menu {
+                    height: 0;
+                    background-color: red;
+                }
+
+                > li > ul.drop-menu > li {
+                    font-size: 1.05rem;
+                    padding: .6rem .4rem;
+                    opacity: 0;
+                    color: rgb(173, 172, 172);
+                    transition: color .1s linear;
+                    &:hover {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+
+    /*----------MEDIA-QUERY----------*/
+    @include Media (min-width, 38em){
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 3.5rem;
+        .header-title {
+            display: flex;
+            align-self: flex-start;
+            padding-bottom: 5px;
+            font-size: 1.3rem;
+        }
+        
+        .filters-wrapper {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 325px;
+
+            .category-filter, .sort-filter {
+                ul.drop-menu-container {
+                    > li {
+                        text-align: left;
+                    }
+                }
+                ul.drop-menu > li {
+                    margin-left: .5rem;
+                }
+            }
+        }
+    }
+}

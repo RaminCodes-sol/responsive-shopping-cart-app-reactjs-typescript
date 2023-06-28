@@ -1,0 +1,19 @@
+
+
+
+.customCursor {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 100px;
+    position: fixed;
+    z-index: 30000;
+    transform: translate(0px, 0px) scale(1);
+    transition: transform 80ms linear;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    display: none;
+    @media (min-width: 46em) {
+        display: block;
+    }
+}

@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=League+Gothic&display=swap');
+
+@mixin Media ($type, $size) {
+    @media (min-width: $size) {
+        @content;
+    }
+}
+
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Anton', sans-serif;
+    color: #fff;
+    padding: 1rem .8rem;
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        button {
+            gap: .5rem;
+            color: #fff;
+            background-color: transparent;
+            &:last-of-type {
+                position: relative;
+                z-index: 1200;
+            }
+            > span {
+                font-size: .85rem;
+                align-self: flex-end;
+            }
+            svg {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    @include Media (min-width, 38em) {
+        padding: 1rem 1.5rem;
+    }
+}

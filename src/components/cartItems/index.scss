@@ -1,0 +1,282 @@
+
+
+@mixin Grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: start;
+    align-items: center;
+    gap: 1em;
+}
+
+
+@mixin BorderRadius ($top-or-bottom, $left-or-right, $size) {
+    border-#{$top-or-bottom}-#{$left-or-right}-radius: $size;
+}
+
+
+.cart-wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    position: fixed;
+    z-index: 10000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    // padding: 7em 0;
+    overflow-y: auto;
+
+    
+    .cart-container {
+        width: 100%;
+        background-color: #000;
+        padding: 1rem;
+
+
+        /*----------Cart_Header----------*/
+        .cart_header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-direction: column-reverse;
+            gap: 2rem;
+            > div {
+                h1 {
+                    font-size: 1.3rem;
+                    margin-bottom: .5rem;
+                    span {
+                        width: 31px;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+            }
+
+            > button {
+                width: 45px;
+                height: 45px;
+                font-size: 2.2rem;
+                color: #fff;
+                background-color: transparent;
+                transition: transform .2s ease;
+                &:hover {
+                    transform: rotate(90deg) scale(.9);
+                }
+            }
+        }
+
+
+        /*----------Cart_Table----------*/
+        .cart_table {
+            width: 100%;
+            margin-top: 1.7em;
+            > table {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+
+                thead tr {
+                    width: 100%;
+                    // display: flex;
+                    // justify-content: space-around;
+                    // align-items: center;
+                    padding: 1.7rem 0;
+                    margin-bottom: .77em;
+                    font-size: .75rem;
+                    border-top: 1px solid #333333;
+                    border-bottom: 1px solid #333333;
+                    @include Grid;
+                    th {
+                        justify-self: center;
+                    }
+                }
+
+
+                tbody tr{
+                    @include Grid;
+                    padding: .77rem 0;
+
+                    border-bottom: 1px solid #333333;
+
+                    td {
+                        justify-self: center;
+                        &.product-thumbnail {
+                            width: 45px;
+                            figure img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: contain;
+                            }
+                        }
+
+                        &.product-name {
+                            font-size: .8rem;
+                        }
+                        &.product-price {
+                            font-size: .83rem;
+                        }
+                        &.product-quantity {
+                            display: flex;
+                            align-items: center;
+                            gap: .1rem;
+                            > span {
+                                width: 25px;
+                                font-size: .85rem;
+                            }
+                            > div button {
+                                width: 30px;
+                                height: 30px;
+                                &:nth-of-type(1) {
+                                    @include BorderRadius(top, left, 100px);
+                                    @include BorderRadius(top, right, 100px);
+                                }
+                                &:nth-of-type(2) {
+                                    @include BorderRadius(bottom, left, 100px);
+                                    @include BorderRadius(bottom, right, 100px);
+                                }
+                            }
+                        }
+
+                        &.product-remove {
+                            button {
+                                font-size: 1.3rem;
+                                color: #fff;
+                                padding: .5rem;
+                                background-color: transparent;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        /*----------Cart_Total----------*/
+        .cart_total {
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: space-between;
+            padding: 2em 2em 3em;
+            gap: 2rem;
+            > button {
+                align-self: center;
+                font-size: .97rem;
+                padding: .3rem;
+                background-color: transparent;
+                color: #fff;
+                text-decoration: underline;
+                &:hover {
+                    color: #a2a0a0;
+                }
+            }
+            .totol-price-container {
+                .subtotal, .tax {
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 3rem;
+                    padding: .7rem 0;
+                    > span:nth-of-type(2) {
+                        width: 100px;
+                        text-align: right;
+                    }
+                }
+                > button {
+                    background-color: #A06929;
+                    font-size: .9rem;
+                    font-weight: 700;
+                    margin: 0 auto;
+                    color: #fff;
+                    padding: .8rem 2rem;
+                    border-radius: 100px;
+                    transition: all .1s linear;
+                    margin-top: .8rem;
+                    &:hover {
+                        color: #000;
+                        background-color: #fff;
+                    }
+                }
+            }
+        }
+    }
+    
+
+    /*----------Media-Query----------*/
+    @media (min-width: 48em) {
+        .cart-container {
+
+            .cart_header {
+                padding: 1.7em 2em;
+                > div {
+                    h1 {
+                        font-size: 3rem;
+                        margin-bottom: 0;
+                        > span {
+                            width: 57px;
+                        }
+                    }
+                }
+                > button {
+                    width: 55px;
+                    height: 55px;
+                }
+            }
+
+
+            .cart_table {
+                table {
+                    > thead tr {
+                        @include Grid;
+                        font-size: .9rem; 
+                        th {
+                            &:not(:first-of-type) {
+                                justify-self: center;
+                            }
+                        }
+                    }
+
+                    > tbody tr {
+                        td {
+                            &.product-thumbnail {
+                                width: 100px;
+                            }
+                            &.product-name {
+                                font-size: 1.1rem;
+                            }
+                            &.product-price {
+                                font-size: 1.2rem;
+                            }
+                            &.product-quantity {
+                                display: flex;
+                                align-items: center;
+                                gap: .1rem;
+                                > span {
+                                    width: 25px;
+                                    font-size: 1.2rem;
+                                }
+                            }
+                            &.product-remove {
+                                button {
+                                    font-size: 1.8rem;
+                                    color: #fff;
+                                    padding: .5rem;
+                                    background-color: transparent;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            .cart_total {
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 0;
+            }
+        }
+    }
+}

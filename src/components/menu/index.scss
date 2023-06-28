@@ -1,0 +1,51 @@
+
+
+.menu-wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: #111111;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    color: #fff;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+
+
+    .menu_content {
+        display: flex;
+        gap: 1.5rem;
+        justify-self: center;
+        align-self: end;
+        h1 {
+            font-size: 1.7rem;
+            cursor: pointer;
+        }
+    }
+
+    .menu_footer {
+        justify-self: center;
+        align-self: center;
+        h5 {
+            font-size: 1.1rem;
+            color: silver;
+            a {
+                color: #fff;
+                font-size: .9rem;
+                cursor: pointer;
+            }
+        }
+    }
+
+
+    @media (min-width:  38em) {
+        .menu_content {
+            flex-direction: row;
+            gap: 3rem;
+            h1 {
+                font-size: 3rem;
+            }
+        }
+    }
+}
