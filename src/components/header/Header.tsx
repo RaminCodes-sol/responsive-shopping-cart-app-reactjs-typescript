@@ -1,6 +1,7 @@
 import './index.scss'
 import { motion } from 'framer-motion'
 import { useProductContext } from '../../productContext/ProductContext'
+import { useState } from 'react'
 
 
 /*------Framer-Motion-Variant------*/
@@ -43,8 +44,12 @@ const filterVariants = {
 
 const Header = () => {
   const { sort, filterByCategory } = useProductContext()
+  const [active, setActive] = useState({
+    fadeInCategory: false,
+    fadeInSort: false
+  })
+  console.log(active)
 
-  
   return (
     <motion.div className='header' variants={containerVariants} initial='initial' animate='animate'>
       
@@ -63,8 +68,11 @@ const Header = () => {
 
         <div className='category-filter'>
           <ul className='drop-menu-container'>
-            <li>by category
-              <ul className="drop-menu">
+            <li onClick={() => setActive({
+              fadeInCategory: !active.fadeInCategory,
+              fadeInSort: false
+            })}>by category
+              <ul className={`drop-menu ${active.fadeInCategory && 'active'}`}>
                 <li onClick={() => filterByCategory('all')}>all</li>
                 <li onClick={() => filterByCategory('clothes')}>clothes</li>
                 <li onClick={() => filterByCategory('shoes')}>shoes</li>
@@ -77,8 +85,11 @@ const Header = () => {
 
         <div className='sort-filter'>
           <ul className='drop-menu-container'>
-            <li>by sort
-              <ul className='drop-menu'>
+            <li onClick={() => setActive({
+              fadeInSort: !active.fadeInSort,
+              fadeInCategory: false
+            })}>by sort
+              <ul className={`drop-menu ${active.fadeInSort && 'active'}`}>
                 <li onClick={() => sort('low_price')}>low price</li>
                 <li onClick={() => sort('high_price')}>high price</li>
                 <li onClick={() => sort('a-z')}>A - Z</li>

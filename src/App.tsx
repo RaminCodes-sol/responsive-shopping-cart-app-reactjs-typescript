@@ -39,13 +39,15 @@ function App() {
 
         {/*-------Cart-Items-------*/}
         { 
-          cartOpened && <motion.div key="cartItems">
+          cartOpened && 
+            <motion.div key="cartItems">
               <CartItems />
             </motion.div> 
         }
 
         {
-          menuOpened && <motion.div key='menu'>
+          menuOpened && 
+            <motion.div key='menu'>
               <Menu />
             </motion.div>
         }
@@ -60,7 +62,7 @@ function App() {
                 <Navbar />
                 <Routes>
                   <Route path='/' element={<Home />} />
-                  <Route path='product/:productId' element={<ProductDetails />} />
+                  <Route path='/product/:productId' element={<ProductDetails />} />
                 </Routes>
               </> 
         }

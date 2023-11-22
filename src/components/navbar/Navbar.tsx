@@ -36,7 +36,7 @@ const Navbar = () => {
     
 
     useEffect(() => {
-        const items = cartItems.reduce((acc, item) => {
+        const items = cartItems?.reduce((acc, item) => {
             return acc + item.quantity
         }, 0)
         setItemQuantities(items)

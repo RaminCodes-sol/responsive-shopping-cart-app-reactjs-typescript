@@ -45,17 +45,17 @@ const itemVariants = {
 }
 
 
-/*-------Props-------*/
-type Props = {
+/*-------Props Type-------*/
+type PropsType = {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 
 
-const LoadingPage:React.FC<Props> = ({ setLoading }) => {
+const LoadingPage:React.FC<PropsType> = ({ setLoading }) => {
 
   return (
-    <motion.div className="loading-page" variants={loadingVariants} initial='initial' animate='animate' exit='exit' onAnimationComplete={() => setLoading(false)}>
+    <motion.div className="loading-page" viewport={{ once: true }} variants={loadingVariants} initial='initial' animate='animate' exit='exit' onAnimationComplete={() => setLoading(false)}>
 
       <motion.figure className="figure left" variants={itemVariants} custom={-10}>
         <img src={img1} alt='img' />

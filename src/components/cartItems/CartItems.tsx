@@ -59,7 +59,7 @@ const CartItems = () => {
       acc.total += item.quantity * item.price
       acc.quantity += item.quantity
       return acc
-    }, {
+    }, { 
       total: 0,
       quantity: 0
     })

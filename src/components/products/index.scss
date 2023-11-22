@@ -2,6 +2,7 @@
 
 .products-wrapper {
     margin-top: 9em;
+    padding-bottom: 2rem;
     .products {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));

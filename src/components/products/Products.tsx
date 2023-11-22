@@ -5,6 +5,7 @@ import Product from '../product/Product'
 import { useProductContext } from '../../productContext/ProductContext'
 
 
+
 /*-------Framer-Motion-Variants-------*/
 const productsVariants = {
     animate: {
